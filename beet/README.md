@@ -1,4 +1,4 @@
-# @metaplex-foundation/beet
+# @j0nnyboi/beet
 
 Strict borsh compatible de/serializer.
 
@@ -75,7 +75,7 @@ that processes dynamic types directly use one of the alternatives, i.e. [borsh-j
 
 ## API
 
-Please find the [API docs here](https://metaplex-foundation.github.io/beet/docs/beet).
+Please find the [API docs here](https://j0nnyboi.github.io/beet/docs/beet).
 
 ## Examples
 
@@ -158,12 +158,12 @@ const [deserializedTrader] = Trader.struct.deserialize(buf)
 
 ### Struct with non-primitive fields
 
-**NOTE:** depends on `beet-solana` extension package for the `PublicKey` implementation
+**NOTE:** depends on `beet-safecoin` extension package for the `PublicKey` implementation
 
 ```ts
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as web3 from '@safecoin/web3.js'
+import * as beet from '@j0nnyboi/beet'
+import * as beetSafecoin from '@j0nnyboi/beet-safecoin'
 
 type InstructionArgs = {
   instructionDiscriminator: number[]
@@ -175,8 +175,8 @@ type InstructionArgs = {
 const createStruct = new beet.BeetArgsStruct<InstructionArgs>(
   [
     ['instructionDiscriminator', beet.fixedSizeArray(beet.u8, 8)],
-    ['authority', beetSolana.publicKey],
-    ['maybePublickKey', beet.coption(beetSolana.publicKey)],
+    ['authority', beetSafecoin.publicKey],
+    ['maybePublickKey', beet.coption(beetSafecoin.publicKey)],
   ],
   'InstructionArgs'
 )
@@ -187,7 +187,7 @@ const createStruct = new beet.BeetArgsStruct<InstructionArgs>(
 #### Fixed Size
 
 ```ts
-import { u8 } from '@metaplex-foundation/beet'
+import { u8 } from '@j0nnyboi/beet'
 const n = 1
 const buf = Buffer.alloc(u8.byteSize)
 u8.write(buf, 0, n)
@@ -197,7 +197,7 @@ u8.read(buf, 0) // === 1
 #### Dynamic Size
 
 ```ts
-import { u8, array } from '@metaplex-foundation/beet'
+import { u8, array } from '@j0nnyboi/beet'
 const xs = [ 1, 2 ]
 const beet = array(u8)
 const fixedBeet = beet.toFixedFromValue(xs)

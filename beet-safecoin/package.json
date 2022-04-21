@@ -1,14 +1,14 @@
 {
-  "name": "@metaplex-foundation/beet-solana",
+  "name": "@j0nnyboi/beet-safecoin",
   "version": "0.1.1",
-  "description": "Solana specific extension for beet, the borsh compatible de/serializer",
+  "description": "Safecoin specific extension for beet, the borsh compatible de/serializer",
   "sideEffects": false,
-  "main": "dist/cjs/src/beet-solana.js",
-  "module": "dist/esm/src/beet-solana.js",
-  "types": "dist/types/src/beet-solana.d.ts",
+  "main": "dist/cjs/src/beet-safecoin.js",
+  "module": "dist/esm/src/beet-safecoin.js",
+  "types": "dist/types/src/beet-safecoin.d.ts",
   "exports": {
-    "import": "./dist/esm/src/beet-solana.js",
-    "require": "./dist/cjs/src/beet-solana.js"
+    "import": "./dist/esm/src/beet-safecoin.js",
+    "require": "./dist/cjs/src/beet-safecoin.js"
   },
   "scripts": {
     "check:publish-ready": "yarn build && yarn test",
@@ -21,9 +21,9 @@
     "test": "tape dist/cjs/test/*.js",
     "lint": "prettier -c ./src/",
     "lint:fix": "prettier --write ./src",
-    "doc": "rimraf ../docs/beet-solana && typedoc"
+    "doc": "rimraf ../docs/beet-safecoin && typedoc"
   },
-  "repository": "git@github.com:metaplex-foundation/beet-solana.git",
+  "repository": "git@github.com:j0nnyboi/beet-safecoin.git",
   "author": "Thorsten Lorenz <thlorenz@gmx.de>",
   "license": "Apache-2.0",
   "directories": {
@@ -35,8 +35,8 @@
     "dist/types/src/*"
   ],
   "dependencies": {
-    "@metaplex-foundation/beet": ">=0.1.0",
-    "@solana/web3.js": "^1.31.0"
+    "@j0nnyboi/beet": ">=0.1.0",
+    "@safecoin/web3.js": "^1.29.4"
   },
   "devDependencies": {
     "@types/node": "^14.18.0",
