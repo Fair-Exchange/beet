@@ -1,6 +1,6 @@
 import { FixedSizeBeet } from '@j0nnyboi/beet'
 import { PublicKey, Keypair } from '@safecoin/web3.js'
-import { publicKey } from '../src/beet-solana'
+import { publicKey } from '../src/beet-safecoin'
 import test from 'tape'
 
 function checkCases(
