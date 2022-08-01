@@ -2,26 +2,27 @@ import { SupportedTypeDefinition } from '@j0nnyboi/beet'
 import { KeysExports, keysTypeMap, KeysTypeMapKey } from './keys'
 
 export * from './keys'
+export * from './gpa'
 
 /**
  * @category TypeDefinition
  */
-export type BeetSafecoinTypeMapKey = KeysTypeMapKey
+export type BeetSolanaTypeMapKey = KeysTypeMapKey
 /**
  * @category TypeDefinition
  */
-export type BeetSafecoinExports = KeysExports
+export type BeetSolanaExports = KeysExports
 
 /**
- * Maps safecoin beet exports to metadata which describes in which package it
+ * Maps solana beet exports to metadata which describes in which package it
  * is defined as well as which TypeScript type is used to represent the
  * deserialized value in JavaScript.
  *
  * @category TypeDefinition
  */
 export const supportedTypeMap: Record<
-  BeetSafecoinTypeMapKey,
+  BeetSolanaTypeMapKey,
   SupportedTypeDefinition & {
-    beet: BeetSafecoinExports
+    beet: BeetSolanaExports
   }
 > = keysTypeMap

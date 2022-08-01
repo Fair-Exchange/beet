@@ -32,7 +32,7 @@ export type BeetReadWrite<T, V = Partial<T>> = {
    * @param offset at which to start writing into the buffer
    * @param value to write
    */
-  write(buf: Buffer, offset: number, value: V): void
+  write(buf: Buffer, offset: number, value: T | V): void
   /**
    * Reads the data in the provided buffer and deserializes it into a value of
    * type {@link T}.
@@ -194,7 +194,7 @@ export const BEET_TYPE_ARG_INNER = 'Beet<{innner}>'
  * NOTE: that if this is `false`, the struct is considered _fixed_ size which
  * means it has the same size no matter what value it holds
  * @property sourcPack the package where the definition is exported,
- * i.e. beet or beet-safecoin
+ * i.e. beet or beet-solana
  * @property ts is the TypeScript type representing the deserialized type
  * @property arg specifies the type of arg to provide to create the Beet type
  *   - len: for fixed size arrays and strings
@@ -258,3 +258,34 @@ export function isElementCollectionFixedSizeBeet<T, V = Partial<T>>(
     keys.includes('lenPrefixByteSize')
   )
 }
+
+// -----------------
+// Enums
+// -----------------
+
+// TypeScript enum type support isn't that great since it really ends up being an Object hash
+// when transpiled.
+// Therefore we have to jump through some hoops to make all types check out
+export type Enum<T> =
+  | { [key: number | string]: string | number | T }
+  | number
+  | T
+
+/**
+ * Enum Variant Kinds
+ */
+export type DataEnumKind<T> = keyof T
+
+/**
+ * Turns a `Record<K, Beet<V>>` into a discriminated union `{ __kind: K, dataBeet: Beet<V> }`.
+ */
+export type DataEnumBeet<T, Kind extends DataEnumKind<T> = DataEnumKind<T>> = [
+  Kind,
+  FixableBeet<T[Kind], any> | FixedSizeBeet<T[Kind], any>
+]
+/**
+ * Turns a `Record<K, V>` into a discriminated union `{ __kind: K, ...V }`.
+ */
+export type DataEnumKeyAsKind<T> = {
+  [K in DataEnumKind<T>]: { __kind: K } & T[K]
+}[keyof T]

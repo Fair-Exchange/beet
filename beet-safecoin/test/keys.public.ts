@@ -1,6 +1,6 @@
 import { FixedSizeBeet } from '@j0nnyboi/beet'
 import { PublicKey, Keypair } from '@safecoin/web3.js'
-import { publicKey } from '../src/beet-safecoin'
+import { publicKey } from '../src/beet-solana'
 import test from 'tape'
 
 function checkCases(
@@ -33,7 +33,7 @@ test('publicKey: roundtrip', (t) => {
   const cases = [
     PublicKey.default,
     Keypair.generate().publicKey,
-    new PublicKey('4Mwn4v5KdBGv5KGbjjiVJtKQLjEmTFATmhLv8gHf6LNg'),
+    new PublicKey('p1exdMJcjVao65QdewkaZRUnU6VPSXhus9n2GzWfh98'),
   ]
   const offsets = [0, 4, 20]
   const beet = publicKey

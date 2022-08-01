@@ -1,8 +1,8 @@
 {
-  "entryPoints": ["src/beet-safecoin.ts"],
+  "entryPoints": ["src/beet-solana.ts"],
   "excludePrivate": true,
   "categorizeByGroup": false,
   "readme": "none",
   "emit": "both",
-  "out": "../docs/beet-safecoin"
+  "out": "../docs/beet-solana"
 }

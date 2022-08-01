@@ -1,4 +1,4 @@
-# @j0nnyboi/beet
+# @metaplex-foundation/beet
 
 Strict borsh compatible de/serializer.
 
@@ -75,7 +75,7 @@ that processes dynamic types directly use one of the alternatives, i.e. [borsh-j
 
 ## API
 
-Please find the [API docs here](https://j0nnyboi.github.io/beet/docs/beet).
+Please find the [API docs here](https://metaplex-foundation.github.io/beet/docs/beet).
 
 ## Examples
 
@@ -158,12 +158,12 @@ const [deserializedTrader] = Trader.struct.deserialize(buf)
 
 ### Struct with non-primitive fields
 
-**NOTE:** depends on `beet-safecoin` extension package for the `PublicKey` implementation
+**NOTE:** depends on `beet-solana` extension package for the `PublicKey` implementation
 
 ```ts
-import * as web3 from '@safecoin/web3.js'
-import * as beet from '@j0nnyboi/beet'
-import * as beetSafecoin from '@j0nnyboi/beet-safecoin'
+import * as web3 from '@solana/web3.js'
+import * as beet from '@metaplex-foundation/beet'
+import * as beetSolana from '@metaplex-foundation/beet-solana'
 
 type InstructionArgs = {
   instructionDiscriminator: number[]
@@ -175,8 +175,8 @@ type InstructionArgs = {
 const createStruct = new beet.BeetArgsStruct<InstructionArgs>(
   [
     ['instructionDiscriminator', beet.fixedSizeArray(beet.u8, 8)],
-    ['authority', beetSafecoin.publicKey],
-    ['maybePublickKey', beet.coption(beetSafecoin.publicKey)],
+    ['authority', beetSolana.publicKey],
+    ['maybePublickKey', beet.coption(beetSolana.publicKey)],
   ],
   'InstructionArgs'
 )
@@ -187,7 +187,7 @@ const createStruct = new beet.BeetArgsStruct<InstructionArgs>(
 #### Fixed Size
 
 ```ts
-import { u8 } from '@j0nnyboi/beet'
+import { u8 } from '@metaplex-foundation/beet'
 const n = 1
 const buf = Buffer.alloc(u8.byteSize)
 u8.write(buf, 0, n)
@@ -197,7 +197,7 @@ u8.read(buf, 0) // === 1
 #### Dynamic Size
 
 ```ts
-import { u8, array } from '@j0nnyboi/beet'
+import { u8, array } from '@metaplex-foundation/beet'
 const xs = [ 1, 2 ]
 const beet = array(u8)
 const fixedBeet = beet.toFixedFromValue(xs)
@@ -252,21 +252,63 @@ fixedBeet.read(buf, 0) // same  as results
 
 #### Enum with Data Variants
 
+NOTE: this sample is what [solita](https://github.com/metaplex-foundation/solita) will generate from a provided IDL. solita is the
+recommended way to create TypeScript that uses beet for de/serialization.
+
 ```ts
-enum ResultKind {
-  Good,
-  Bad,
+// -----------------
+// Setup
+// -----------------
+type CollectionInfoRecord = {
+  V1: {
+    symbol: string
+    verifiedCreators: web3.PublicKey[]
+    whitelistRoot: number[] /* size: 32 */
+  }
+  V2: { collectionMint: web3.PublicKey }
 }
+type CollectionInfo = beet.DataEnumKeyAsKind<CollectionInfoRecord>
 
-const goodResult: DataEnum<ResultKind, Result> = {
-  kind: ResultKind.Good,
-  data: new Result(20, 1200, -455),
+const collectionInfoBeet = beet.dataEnum<CollectionInfoRecord>([
+  [
+    'V1',
+    new beet.FixableBeetArgsStruct<CollectionInfoRecord['V1']>(
+      [
+        ['symbol', beet.utf8String],
+        ['verifiedCreators', beet.array(beetSolana.publicKey)],
+        ['whitelistRoot', beet.uniformFixedSizeArray(beet.u8, 32)],
+      ],
+      'CollectionInfoRecord["V1"]'
+    ),
+  ],
+
+  [
+    'V2',
+    new beet.BeetArgsStruct<CollectionInfoRecord['V2']>(
+      [['collectionMint', beetSolana.publicKey]],
+      'CollectionInfoRecord["V2"]'
+    ),
+  ],
+]) as beet.FixableBeet<CollectionInfo>
+
+// -----------------
+// Usage
+// -----------------
+const collectionV1: CollectionInfo & { __kind: 'V1' } = {
+  __kind: 'V1',
+  symbol: 'SYM',
+  verifiedCreators: [new web3.PublicKey(1), new web3.PublicKey(2)],
+  whitelistRoot: new Array(32).fill(33),
 }
-const resultEnum: Beet<DataEnum<ResultKind, Result>> = dataEnum(Result.struct)
+const fixedBeet = collectionInfoBeet.toFixedFromValue(collectionV1)
 
-const buf = Buffer.alloc(resultEnum.byteSize)
-beet.write(buf, 0, goodResult)
-beet.read(buf, 0) // same as goodResult
+// Serialize
+const buf = Buffer.alloc(fixedBeet.byteSize)
+fixedBeet.write(buf, 0, collectionV1)
+
+// Deserialize
+const val = fixedBeet.read(buf, 0)
+console.log(val)
 ```
 
 ## LICENSE

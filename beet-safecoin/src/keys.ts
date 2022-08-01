@@ -4,19 +4,19 @@ import {
   fixedSizeUint8Array,
   SupportedTypeDefinition,
 } from '@j0nnyboi/beet'
-const BEET_SAFECOIN_PACKAGE = '@j0nnyboi/beet-safecoin'
-const SAFECOIN_WEB3_PACKAGE = '@safecoin/web3.js'
+const BEET_SOLANA_PACKAGE = '@j0nnyboi/beet-safecoin'
+const SOLANA_WEB3_PACKAGE = '@safecoin/web3.js'
 
 const uint8Array32 = fixedSizeUint8Array(32)
 
 /**
- * De/Serializer for safecoin {@link PublicKey}s aka `publicKey`.
+ * De/Serializer for solana {@link PublicKey}s aka `publicKey`.
  *
  *
  * ## Using PublicKey Directly
  *
  * ```ts
- * import { publicKey } from '@j0nnyboi/beet-safecoin'
+ * import { publicKey } from '@metaplex-foundation/beet-solana'
  *
  * const generatedKey  = Keypair.generate().publicKey
  * const buf = Buffer.alloc(publicKey.byteSize)
@@ -27,7 +27,7 @@ const uint8Array32 = fixedSizeUint8Array(32)
  * ## PublicKey as part of a Struct Configuration
  *
  * ```ts
- * import { publicKey } from '@metaplex-foundation/beet-safecoin'
+ * import { publicKey } from '@metaplex-foundation/beet-solana'
  *
  * type InstructionArgs = {
  *   authority: web3.PublicKey
@@ -41,7 +41,7 @@ const uint8Array32 = fixedSizeUint8Array(32)
  * )
  * ```
  *
- * @category beet/safecoin
+ * @category beet/solana
  */
 export const publicKey: FixedSizeBeet<PublicKey> = {
   write: function (buf: Buffer, offset: number, value: PublicKey): void {
@@ -74,7 +74,7 @@ export type KeysTypeMap = Record<
 >
 
 /**
- * Maps safecoin keys beet exports to metadata which describes in which package it
+ * Maps solana keys beet exports to metadata which describes in which package it
  * is defined as well as which TypeScript type is used to represent the
  * deserialized value in JavaScript.
  *
@@ -84,8 +84,8 @@ export const keysTypeMap: KeysTypeMap = {
   publicKey: {
     beet: 'publicKey',
     isFixable: false,
-    sourcePack: BEET_SAFECOIN_PACKAGE,
+    sourcePack: BEET_SOLANA_PACKAGE,
     ts: 'PublicKey',
-    pack: SAFECOIN_WEB3_PACKAGE,
+    pack: SOLANA_WEB3_PACKAGE,
   },
 }

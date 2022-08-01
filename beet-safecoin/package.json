@@ -1,7 +1,7 @@
 {
   "name": "@j0nnyboi/beet-safecoin",
-  "version": "0.1.1",
-  "description": "Safecoin specific extension for beet, the borsh compatible de/serializer",
+  "version": "0.3.0",
+  "description": "Solana specific extension for beet, the borsh compatible de/serializer",
   "sideEffects": false,
   "main": "dist/cjs/src/beet-safecoin.js",
   "module": "dist/esm/src/beet-safecoin.js",
@@ -21,7 +21,7 @@
     "test": "tape dist/cjs/test/*.js",
     "lint": "prettier -c ./src/",
     "lint:fix": "prettier --write ./src",
-    "doc": "rimraf ../docs/beet-safecoin && typedoc"
+    "doc": "rimraf ../docs/beet-solana && typedoc"
   },
   "repository": "git@github.com:j0nnyboi/beet-safecoin.git",
   "author": "Thorsten Lorenz <thlorenz@gmx.de>",
@@ -35,14 +35,19 @@
     "dist/types/src/*"
   ],
   "dependencies": {
-    "@j0nnyboi/beet": ">=0.1.1",
-    "@safecoin/web3.js": "^1.29.4"
+    "@j0nnyboi/beet": ">=0.1.0",
+    "@safecoin/web3.js": "^1.44.0",
+    "bs58": "^5.0.0",
+    "debug": "^4.3.4"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.7",
     "@types/node": "^14.18.0",
+    "@types/node-fetch": "^2.6.1",
     "@types/tape": "^4.13.2",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
+    "spok": "^1.4.3",
     "tape": "^5.3.2",
     "typedoc": "^0.22.10",
     "typescript": "^4.5.2"
