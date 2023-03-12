@@ -5,7 +5,7 @@ import {
   FixableBeetStruct,
   FixedSizeBeet,
   isFixedSizeBeet,
-} from '@j0nnyboi/beet'
+} from '@safecoin/beet'
 import {
   Connection,
   GetProgramAccountsConfig,

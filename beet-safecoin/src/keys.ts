@@ -3,8 +3,8 @@ import {
   FixedSizeBeet,
   fixedSizeUint8Array,
   SupportedTypeDefinition,
-} from '@j0nnyboi/beet'
-const BEET_SOLANA_PACKAGE = '@j0nnyboi/beet-safecoin'
+} from '@safecoin/beet'
+const BEET_SOLANA_PACKAGE = '@safecoin/beet-safecoin'
 const SOLANA_WEB3_PACKAGE = '@safecoin/web3.js'
 
 const uint8Array32 = fixedSizeUint8Array(32)

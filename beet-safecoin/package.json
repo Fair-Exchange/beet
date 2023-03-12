@@ -1,5 +1,5 @@
 {
-  "name": "@j0nnyboi/beet-safecoin",
+  "name": "@safecoin/beet-safecoin",
   "version": "0.3.0",
   "description": "Solana specific extension for beet, the borsh compatible de/serializer",
   "sideEffects": false,
@@ -35,7 +35,7 @@
     "dist/types/src/*"
   ],
   "dependencies": {
-    "@j0nnyboi/beet": ">=0.1.0",
+    "@safecoin/beet": ">=0.1.0",
     "@safecoin/web3.js": "^1.44.0",
     "bs58": "^5.0.0",
     "debug": "^4.3.4"

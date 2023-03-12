@@ -6,7 +6,7 @@ import {
   u16,
   u8,
   utf8String,
-} from '@j0nnyboi/beet'
+} from '@safecoin/beet'
 import {
   GetProgramAccountsConfig,
   GetProgramAccountsFilter,

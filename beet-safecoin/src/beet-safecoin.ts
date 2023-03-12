@@ -1,4 +1,4 @@
-import { SupportedTypeDefinition } from '@j0nnyboi/beet'
+import { SupportedTypeDefinition } from '@safecoin/beet'
 import { KeysExports, keysTypeMap, KeysTypeMapKey } from './keys'
 
 export * from './keys'

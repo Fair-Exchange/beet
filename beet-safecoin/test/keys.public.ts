@@ -1,4 +1,4 @@
-import { FixedSizeBeet } from '@j0nnyboi/beet'
+import { FixedSizeBeet } from '@safecoin/beet'
 import { PublicKey, Keypair } from '@safecoin/web3.js'
 import { publicKey } from '../src/beet-safecoin'
 import test from 'tape'

@@ -1,7 +1,7 @@
 import test from 'tape'
 import spok from 'spok'
-import { BeetStruct } from '@j0nnyboi/beet'
-import { u8 } from '@j0nnyboi/beet'
+import { BeetStruct } from '@safecoin/beet'
+import { u8 } from '@safecoin/beet'
 import {
   IntAndString,
   PROGRAM_ID,

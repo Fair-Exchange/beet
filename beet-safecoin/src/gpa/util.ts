@@ -1,4 +1,4 @@
-import { FixedSizeBeet } from '@j0nnyboi/beet'
+import { FixedSizeBeet } from '@safecoin/beet'
 import base58 from 'bs58'
 
 export function encodeFixedBeet<T>(beet: FixedSizeBeet<T>, val: T) {
