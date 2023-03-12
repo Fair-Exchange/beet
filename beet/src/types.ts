@@ -6,7 +6,7 @@ import { strict as assert } from 'assert'
  *
  * @private
  */
-export const BEET_PACKAGE = '@j0nnyboi/beet'
+export const BEET_PACKAGE = '@safecoin/beet'
 
 /**
  * Base Beet type.

@@ -1,4 +1,4 @@
-# @metaplex-foundation/beet
+# @safecoin/beet
 
 Strict borsh compatible de/serializer.
 
@@ -82,7 +82,7 @@ Please find the [API docs here](https://metaplex-foundation.github.io/beet/docs/
 ### Single Fixed Struct Configuration
 
 ```ts
-import { BeetStruct, i32, u16, u8 } from '@metaplex-foundation/beet'
+import { BeetStruct, i32, u16, u8 } from '@safecoin/beet'
 
 class Result {
   constructor(
@@ -106,7 +106,7 @@ class Result {
 ### Single Fixable Struct Configuration
 
 ```ts
-import { FixableBeetStruct, i32, u16, u8, array } from '@metaplex-foundation/beet'
+import { FixableBeetStruct, i32, u16, u8, array } from '@safecoin/beet'
 
 class Result {
   constructor(
@@ -132,7 +132,7 @@ class Result {
 **NOTE:** uses `Result` struct from the above example for the `results` field of `Trader`
 
 ```ts
-import { BeetStruct, fixedSizeUtf8String } from '@metaplex-foundation/beet'
+import { BeetStruct, fixedSizeUtf8String } from '@safecoin/beet'
 class Trader {
   constructor(
     readonly name: string,
@@ -161,9 +161,9 @@ const [deserializedTrader] = Trader.struct.deserialize(buf)
 **NOTE:** depends on `beet-solana` extension package for the `PublicKey` implementation
 
 ```ts
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as web3 from '@safecoin/web3.js'
+import * as beet from '@safecoin/beet'
+import * as beetSolana from '@safecoin/beet-solana'
 
 type InstructionArgs = {
   instructionDiscriminator: number[]
@@ -187,7 +187,7 @@ const createStruct = new beet.BeetArgsStruct<InstructionArgs>(
 #### Fixed Size
 
 ```ts
-import { u8 } from '@metaplex-foundation/beet'
+import { u8 } from '@safecoin/beet'
 const n = 1
 const buf = Buffer.alloc(u8.byteSize)
 u8.write(buf, 0, n)
@@ -197,7 +197,7 @@ u8.read(buf, 0) // === 1
 #### Dynamic Size
 
 ```ts
-import { u8, array } from '@metaplex-foundation/beet'
+import { u8, array } from '@safecoin/beet'
 const xs = [ 1, 2 ]
 const beet = array(u8)
 const fixedBeet = beet.toFixedFromValue(xs)
