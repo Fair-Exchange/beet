@@ -158,12 +158,12 @@ const [deserializedTrader] = Trader.struct.deserialize(buf)
 
 ### Struct with non-primitive fields
 
-**NOTE:** depends on `beet-solana` extension package for the `PublicKey` implementation
+**NOTE:** depends on `beet-safecoin` extension package for the `PublicKey` implementation
 
 ```ts
-import * as web3 from '@solana/web3.js'
+import * as web3 from '@safecoin/web3.js'
 import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as beetSafecoin from '@metaplex-foundation/beet-safecoin'
 
 type InstructionArgs = {
   instructionDiscriminator: number[]
@@ -175,8 +175,8 @@ type InstructionArgs = {
 const createStruct = new beet.BeetArgsStruct<InstructionArgs>(
   [
     ['instructionDiscriminator', beet.fixedSizeArray(beet.u8, 8)],
-    ['authority', beetSolana.publicKey],
-    ['maybePublickKey', beet.coption(beetSolana.publicKey)],
+    ['authority', beetSafecoin.publicKey],
+    ['maybePublickKey', beet.coption(beetSafecoin.publicKey)],
   ],
   'InstructionArgs'
 )

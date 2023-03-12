@@ -1,11 +1,11 @@
-import { PublicKey } from '@solana/web3.js'
+import { PublicKey } from '@safecoin/web3.js'
 import {
   FixedSizeBeet,
   fixedSizeUint8Array,
   SupportedTypeDefinition,
 } from '@metaplex-foundation/beet'
-const BEET_SOLANA_PACKAGE = '@metaplex-foundation/beet-solana'
-const SOLANA_WEB3_PACKAGE = '@solana/web3.js'
+const BEET_SOLANA_PACKAGE = '@metaplex-foundation/beet-safecoin'
+const SOLANA_WEB3_PACKAGE = '@safecoin/web3.js'
 
 const uint8Array32 = fixedSizeUint8Array(32)
 
@@ -16,7 +16,7 @@ const uint8Array32 = fixedSizeUint8Array(32)
  * ## Using PublicKey Directly
  *
  * ```ts
- * import { publicKey } from '@metaplex-foundation/beet-solana'
+ * import { publicKey } from '@metaplex-foundation/beet-safecoin'
  *
  * const generatedKey  = Keypair.generate().publicKey
  * const buf = Buffer.alloc(publicKey.byteSize)
@@ -27,7 +27,7 @@ const uint8Array32 = fixedSizeUint8Array(32)
  * ## PublicKey as part of a Struct Configuration
  *
  * ```ts
- * import { publicKey } from '@metaplex-foundation/beet-solana'
+ * import { publicKey } from '@metaplex-foundation/beet-safecoin'
  *
  * type InstructionArgs = {
  *   authority: web3.PublicKey
