@@ -23,7 +23,7 @@
     "lint:fix": "prettier --write ./src",
     "doc": "rimraf ../docs/beet-safecoin && typedoc"
   },
-  "repository": "git@github.com:j0nnyboi/beet-safecoin.git",
+  "repository": "git@github.com:fair-exchange/beet-safecoin.git",
   "author": "Thorsten Lorenz <thlorenz@gmx.de>",
   "license": "Apache-2.0",
   "directories": {

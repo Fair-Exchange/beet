@@ -16,7 +16,7 @@
   "author": "Metaplex Maintainers <contact@metaplex.com>",
   "homepage": "https://metaplex.com",
   "repository": {
-    "url": "https://github.com/j0nnyboi/beet.git"
+    "url": "https://github.com/fair-exchange/beet.git"
   },
   "private": true,
   "packageManager": "yarn@3.1.1",
