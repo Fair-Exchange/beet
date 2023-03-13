@@ -1,6 +1,6 @@
 {
   "name": "@safecoin/beet-safecoin",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Solana specific extension for beet, the borsh compatible de/serializer",
   "sideEffects": false,
   "main": "dist/cjs/src/beet-safecoin.js",
