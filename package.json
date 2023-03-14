@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "build": "(cd ./beet && yarn build) && (cd ./beet-safecoin && yarn build)",
+    "test:beet": "cd ./beet && yarn test && yarn test:browser",
+    "test:beet-safecoin": "cd ./beet-safecoin && yarn test",
+    "doc": "(cd ./beet && yarn doc); (cd ./beet-safecoin && yarn doc)",
+    "doc:update": "./sh/update-docs",
+    "patch:minipass": "patch-package tap-parser/minipass"
+  },
+  "workspaces": {
+    "packages": [
+      "beet",
+      "beet-safecoin"
+    ]
+  },
+  "author": "Metaplex Maintainers <contact@metaplex.com>",
+  "homepage": "https://metaplex.com",
+  "repository": {
+    "url": "https://github.com/metaplex/beet.git"
+  },
+  "private": true,
+  "packageManager": "yarn@3.1.1",
+  "devDependencies": {
+    "patch-package": "^6.4.7"
+  }
+}

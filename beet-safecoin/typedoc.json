@@ -1,0 +1,8 @@
+{
+  "entryPoints": ["src/beet-safecoin.ts"],
+  "excludePrivate": true,
+  "categorizeByGroup": false,
+  "readme": "none",
+  "emit": "both",
+  "out": "../docs/beet-safecoin"
+}
